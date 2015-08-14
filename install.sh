@@ -31,21 +31,26 @@ if [ "$USER_NAME" == "" ]; then
   exit 0
 fi
 
-echo "Setting Antergos Enlightenment setup to user $USER_NAME"
+echo "Setting Antergos KDE setup to user $USER_NAME"
 
-# All necessary files are in /DESTDIR/usr/share/antergos-openbox-setup
-SRCDIR=/usr/share/antergos-enlightenment-setup
+# All necessary files are in /DESTDIR/usr/share/antergos-kde-setup
+SRCDIR=/usr/share/antergos-kde-setup
 DSTDIR=/home/${USER_NAME}
 CFGDIR=/home/${USER_NAME}/.config
-EDIR=/home/${USER_NAME}/.e
-ELEMENTARYDIR=/home/${USER_NAME}/.elementary
+KDE4DIR=/home/${USER_NAME}/.kde4
 
-mkdir -p ${EDIR}
-mkdir -p ${ELEMENTARYDIR}
+# Copy generic files (this should be done in the PKGBUILD)
+cp -R ${SRCDIR}/apps /usr/share
+cp -R ${SRCDIR}/config /usr/share
+cp -R ${SRCDIR}/icons /usr/share
+cp -R ${SRCDIR}/themes /usr/share
+cp -R ${SRCDIR}/wallpapers /usr/share
 
-# Copy files
-cp -R ${SRCDIR}/e/* ${EDIR}
-cp -R ${SRCDIR}/elementary/* ${ELEMENTARYDIR}
+# Copy user files
+cp ${SRCDIR}/skel/.gtkrc-2.0-kde4 ${DSTDIR}/.gtkrc-2.0
+cp -R ${SRCDIR}/skel/.config/* ${CFGDIR}
+cp -R ${SRCDIR}/skel/.kde4/* ${KDE4DIR}
 
-chown -R ${USER_NAME}:users ${EDIR}
-chown -R ${USER_NAME}:users ${ELEMENTARYDIR}
+chown ${USER_NAME}:users ${DSTDIR}/.gtkrc-2.0
+chown -R ${USER_NAME}:users ${CFGDIR}
+chown -R ${USER_NAME}:users ${KDE4DIR}
