@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Service
+Icon=dialog-ok
+Actions=VerifyMD5
+X-KDE-Priority=TopLevel
+ServiceTypes=KonqPopupMenu/Plugin
+MimeType=all/allfiles;
+
+[Desktop Action VerifyMD5]
+Exec=$( if [ $(kdialog --inputbox "$(md5sum --tag %f)" "$(echo 'Insert MD5 and click OK for checking')") == $(md5sum %f | awk '{print $1}') ]; then kdialog --msgbox "MD5 match!"; else $(kdialog --error "Hashes don't match!");fi;)
+Icon=dialog-ok
+Name=VerifyMD5

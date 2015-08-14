@@ -1,0 +1,9 @@
+[$Version]
+update_info=oxygen.upd:1
+
+[InactiveShadow]
+UseOuterColor=false
+
+[Windeco]
+BlendTitlebarColors=true
+ShowStripes=true
