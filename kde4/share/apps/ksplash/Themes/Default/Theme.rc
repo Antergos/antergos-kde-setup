@@ -1,9 +1,0 @@
-[KSplash Theme: Default]
-Name = Default
-Description = The default splash screen for Antergos.
-Version = 1.0
-Author = Dustin Falgout
-Homepage = http://www.antergos.com
-
-# Theme behaviour settings.
-Engine = KSplashX

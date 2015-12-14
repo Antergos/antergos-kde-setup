@@ -47,7 +47,6 @@ kde4-sweeper=
 kde4-systemsettings=
 libreoffice-installer=
 linguist-qt4=
-pacmanxg=
 qdbusviewer-qt4=
 qv4l2=
 transmission-qt=
@@ -63,7 +62,7 @@ immutability=1
 lastDesktop=-1
 lastScreen=0
 location=4
-plugin=panel
+plugin=org.kde.panel
 screen=0
 zvalue=0
 
@@ -73,7 +72,7 @@ RightButton;NoModifier=contextmenu
 [Containments][1][Applets][13]
 
 immutability=1
-plugin=lancelot_launcher
+plugin=org.kde.plasma.kickoff
 zvalue=0
 
 [Containments][1][Applets][13][Configuration]
@@ -82,7 +81,7 @@ activate=click
 hiddenCategories=
 icon=/usr/share/icons/Numix/32x32/places/start-here-kde.png
 immutability=1
-plugin=lancelot_launcher
+plugin=kick
 show=main
 zvalue=0
 
