@@ -36,21 +36,16 @@ echo "Setting Antergos KDE setup to user $USER_NAME"
 # All necessary files are in /DESTDIR/usr/share/antergos-kde-setup
 SRCDIR=/usr/share/antergos-kde-setup
 DSTDIR=/home/${USER_NAME}
-CFGDIR=/home/${USER_NAME}/.config
-KDE4DIR=/home/${USER_NAME}/.kde4
 
 # Copy generic files (this should be done in the PKGBUILD)
-cp -R ${SRCDIR}/apps /usr/share
-cp -R ${SRCDIR}/config /usr/share
-cp -R ${SRCDIR}/icons /usr/share
-cp -R ${SRCDIR}/themes /usr/share
-cp -R ${SRCDIR}/wallpapers /usr/share
+cp -R ${SRCDIR}/apps \
+	${SRCDIR}/config \
+	${SRCDIR}/icons \
+	${SRCDIR}/themes \
+	${SRCDIR}/skel \
+	${SRCDIR}/wallpapers /usr/share
 
 # Copy user files
-cp ${SRCDIR}/skel/.gtkrc-2.0-kde4 ${DSTDIR}/.gtkrc-2.0
-cp -R ${SRCDIR}/skel/.config/* ${CFGDIR}
-cp -R ${SRCDIR}/skel/.kde4/* ${KDE4DIR}
+cp -R ${SRCDIR}/skel/* ${DSTDIR}
 
-chown ${USER_NAME}:users ${DSTDIR}/.gtkrc-2.0
-chown -R ${USER_NAME}:users ${CFGDIR}
-chown -R ${USER_NAME}:users ${KDE4DIR}
+chown -R ${USER_NAME}:users ${DSTDIR}
