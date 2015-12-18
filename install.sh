@@ -52,6 +52,6 @@ cp -R ${OVERWRITE} ${SRCDIR}/apps \
 	${SRCDIR}/wallpapers /usr/share
 
 # Copy user files
-cp -R ${OVERWRITE} ${SRCDIR}/skel/* ${DSTDIR}
+cp -R ${OVERWRITE} ${SRCDIR}/skel/.* ${DSTDIR}
 
-chown -R ${OVERWRITE} ${USER_NAME}:users ${DSTDIR}
+chown -R ${USER_NAME}:users ${DSTDIR}
