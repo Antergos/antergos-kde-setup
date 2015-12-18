@@ -44,14 +44,18 @@ SRCDIR=/usr/share/antergos-kde-setup
 DSTDIR=/home/${USER_NAME}
 
 # Copy generic files (this should be done in the PKGBUILD)
-cp -R ${OVERWRITE} ${SRCDIR}/apps \
+cp -R ${OVERWRITE} -T /usr/share \
+	${SRCDIR}/apps \
 	${SRCDIR}/config \
 	${SRCDIR}/icons \
 	${SRCDIR}/themes \
 	${SRCDIR}/skel \
-	${SRCDIR}/wallpapers /usr/share
+	${SRCDIR}/wallpapers
 
 # Copy user files
-cp -R ${OVERWRITE} ${SRCDIR}/skel/.* ${DSTDIR}
+cp -R ${OVERWRITE} -T ${DSTDIR} \
+	${SRCDIR}/skel/.config \
+	${SRCDIR}/skel/.local \
+	${SRCDIR}/skel/.gtk**
 
 chown -R ${USER_NAME}:users ${DSTDIR}
