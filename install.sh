@@ -25,7 +25,13 @@
 
 USER_NAME=$1
 
-if [ "$USER_NAME" == "" ]; then
+if [[ "${2}" = 'no-overwrite' ]]; then
+	OVERWRITE='-n'
+else
+	OVERWRITE=''
+fi
+
+if [ "$USER_NAME" = "" ]; then
   echo "Usage:"
   echo "./install.sh username"
   exit 0
@@ -38,7 +44,7 @@ SRCDIR=/usr/share/antergos-kde-setup
 DSTDIR=/home/${USER_NAME}
 
 # Copy generic files (this should be done in the PKGBUILD)
-cp -R ${SRCDIR}/apps \
+cp -R ${OVERWRITE} ${SRCDIR}/apps \
 	${SRCDIR}/config \
 	${SRCDIR}/icons \
 	${SRCDIR}/themes \
@@ -46,6 +52,6 @@ cp -R ${SRCDIR}/apps \
 	${SRCDIR}/wallpapers /usr/share
 
 # Copy user files
-cp -R ${SRCDIR}/skel/* ${DSTDIR}
+cp -R ${OVERWRITE} ${SRCDIR}/skel/* ${DSTDIR}
 
-chown -R ${USER_NAME}:users ${DSTDIR}
+chown -R ${OVERWRITE} ${USER_NAME}:users ${DSTDIR}
