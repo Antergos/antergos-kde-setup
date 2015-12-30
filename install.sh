@@ -22,33 +22,32 @@
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.
 
-USER_NAME="${1}"
+_ANT_USER_NAME="${1}"
 
 if [[ "${2}" = 'no-overwrite' ]]; then
-	OVERWRITE='-n'
+	_ANT_OVERWRITE='-n'
 else
-	OVERWRITE=' '
+	_ANT_OVERWRITE=''
 fi
 
-if [ "${USER_NAME}" = "" ]; then
+env
+
+if [ "${_ANT_USER_NAME}" = "" ]; then
   echo "Usage:"
   echo "./install.sh username"
   exit 0
 fi
 
-echo "Setting Antergos KDE setup to user $USER_NAME"
+echo "Setting Antergos KDE setup to user ${_ANT_USER_NAME}"
 
 # All necessary files are in /DESTDIR/usr/share/antergos-kde-setup
 SRCDIR=/usr/share/antergos-kde-setup
-DSTDIR="/home/${USER_NAME}"
+DSTDIR="/home/${_ANT_USER_NAME}"
 
 # Copy generic files (this should be done in the PKGBUILD)
-cp -R "${OVERWRITE}" -t /usr/share "${SRCDIR}/icons" "${SRCDIR}/skel"
+cp -R "${_ANT_OVERWRITE}" -t /usr/share "${SRCDIR}/icons" "${SRCDIR}/skel"
 
 # Copy user files
-cp -R "${OVERWRITE}" -t "${DSTDIR}" \
-	"${SRCDIR}/skel/.config" \
-	"${SRCDIR}/skel/.local" \
-	"${SRCDIR}/skel/.gtk**"
+cp -R "${_ANT_OVERWRITE}" -t "${DSTDIR}" "${SRCDIR}/skel/.config" "${SRCDIR}/skel/.local"
 
-chown -R ${USER_NAME}:users ${DSTDIR}
+chown -R "${USER_NAME}:users" "${DSTDIR}"
