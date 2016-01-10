@@ -42,6 +42,10 @@ echo "Setting Antergos KDE setup to user ${_ANT_USER_NAME}"
 _ANT_SRCDIR=/usr/share/antergos-kde-setup
 _ANT_DSTDIR="/home/${_ANT_USER_NAME}"
 
+# Setup logo for kinfocenter's about distro screen
+cp "${_ANT_SRCDIR}/antergos-logo.svg" /usr/share/about-distro/
+sed -i 's|archlinux|antergos|g' /etc/xdg/kcm-about-distrorc
+
 # Copy generic files (this should be done in the PKGBUILD)
 cp -R "${_ANT_OVERWRITE}" -t /usr/share "${_ANT_SRCDIR}/icons" "${_ANT_SRCDIR}/skel"
 
